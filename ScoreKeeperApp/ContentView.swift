@@ -14,18 +14,21 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            Color("Mikasa")
+            Color(.white)
                 .ignoresSafeArea()
             VStack (spacing: 30) {
                 Spacer()
                 Text("Score")
                     .font(.largeTitle.weight(.bold))
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.black)
                 HStack (spacing: 0) {
                     ZStack {
-                        Color.blue
+                        Color(.white)
                         VStack {
+                            Spacer()
                             Text("Home")
+                                .foregroundStyle(.black)
+                                .font(.system(size: 24))
                             Spacer()
                             Button {
                                 homeScoreAdd()
@@ -35,22 +38,51 @@ struct ContentView: View {
                                     
                                 }
                                 .frame(maxWidth: 180)
-                                    .padding(.vertical, 60)
-                                .background(.regularMaterial)
+                                    .padding(.vertical, 120)
+                                    .background(.blue)
                                 .clipShape(.rect(cornerRadius: 20))
-                                .font(.system(size: 64))
+                                .font(.system(size: 96))
                                 .buttonStyle(PlainButtonStyle())
+                                
+                            }
+                            HStack (spacing: 75){
+                                Button {
+                                    homeScoreSubtract()
+                                } label : {
+                                    Text("-")
+                                        .frame(minWidth: 50)
+                                        .padding(.vertical, 5)
+                                        .background(Color("Mikasa"))
+                                        .foregroundColor(.white)
+                                        .clipShape(.rect(cornerRadius:20))
+                                }
+                                
+                                Button {
+                                    // action
+                                } label : {
+                                    Text("0")
+                                        .frame(minWidth: 50)
+                                        .padding(.vertical, 5)
+                                        .background(Color("Mikasa"))
+                                        .foregroundColor(.white)
+                                        .clipShape(.rect(cornerRadius:20))
+                                    
+                                }
                             }
                             
+                            Spacer()
                             Spacer()
                             
                         }
                     }
                     .foregroundStyle(.black)
                     ZStack {
-                        Color.red
+                        Color(.white)
                         VStack {
+                            Spacer()
                             Text("Away")
+                                .foregroundStyle(.black)
+                                .font(.system(size: 24))
                             Spacer()
                             Button {
                                 awayScoreAdd()
@@ -60,29 +92,58 @@ struct ContentView: View {
                                     
                                 }
                                 .frame(maxWidth: 180)
-                                    .padding(.vertical, 60)
-                                .background(.regularMaterial)
+                                    .padding(.vertical, 120)
+                                .background(.red)
                                 .clipShape(.rect(cornerRadius: 20))
-                                .font(.system(size: 64))
+                                .font(.system(size: 96))
+                            }
+                            HStack (spacing: 75){
+                                
+                                Button {
+                                    // action
+                                } label : {
+                                    Text("0")
+                                        .frame(minWidth: 50)
+                                        .padding(.vertical, 5)
+                                        .background(Color("Mikasa"))
+                                        .foregroundColor(.white)
+                                        .clipShape(.rect(cornerRadius:20))
+                                    
+                                }
+                                
+                                Button {
+                                    awayScoreSubtract()
+                                } label : {
+                                    Text("-")
+                                        .frame(minWidth: 50)
+                                        .padding(.vertical, 5)
+                                        .background(Color("Mikasa"))
+                                        .foregroundColor(.white)
+                                        .clipShape(.rect(cornerRadius:20))
+                                }
+                                
                             }
                             Spacer()
+                            Spacer()
                         }
+                        
                         
                     }
                     .foregroundStyle(.black)
                 }
                 ZStack {
-                    Color("Mikasa")
+                    Color(.white)
                     VStack {
                         Button {
                             scoreReset()
                         } label : {
                             ZStack {
-                                Color(.white)
+                                Color("Mikasa")
                                 VStack {
-                                    Text("Reset")
+                                    Text("Reset All")
                                     
                                 }
+                                .foregroundColor(.white)
                             }
                             .frame(maxWidth: 180, maxHeight: 90)
                             .clipShape(.capsule)
@@ -101,9 +162,23 @@ struct ContentView: View {
         
     }
     
+    func homeScoreSubtract() {
+        
+        if (homeScore > 0) {
+            homeScore -= 1
+        }
+
+    }
+    
     func awayScoreAdd() {
         
         awayScore += 1
+    }
+    
+    func awayScoreSubtract() {
+        if (awayScore > 0) {
+            awayScore -= 1
+        }
     }
     
     func scoreReset() {
