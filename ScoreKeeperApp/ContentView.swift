@@ -7,6 +7,27 @@
 
 import SwiftUI
 
+struct MiscButton: View {
+    
+    var buttonAction: () -> Void
+    var buttonText: String
+    
+    var body: some View {
+        Button (action: buttonAction) {
+            Text(buttonText)
+                .frame(minWidth: 50)
+                .padding(.vertical, 5)
+                .background(Color("Mikasa"))
+                .foregroundColor(.white)
+                .clipShape(.rect(cornerRadius:20))
+            
+        }
+        
+    }
+    
+    
+}
+
 struct ContentView: View {
     @State private var homeScore = 0
     @State private var awayScore = 0
@@ -38,36 +59,22 @@ struct ContentView: View {
                                     
                                 }
                                 .frame(maxWidth: 180)
-                                    .padding(.vertical, 120)
-                                    .background(.blue)
+                                .padding(.vertical, 120)
+                                .background(.blue)
                                 .clipShape(.rect(cornerRadius: 20))
                                 .font(.system(size: 96))
                                 .buttonStyle(PlainButtonStyle())
                                 
                             }
                             HStack (spacing: 75){
-                                Button {
-                                    homeScoreSubtract()
-                                } label : {
-                                    Text("-")
-                                        .frame(minWidth: 50)
-                                        .padding(.vertical, 5)
-                                        .background(Color("Mikasa"))
-                                        .foregroundColor(.white)
-                                        .clipShape(.rect(cornerRadius:20))
-                                }
                                 
-                                Button {
-                                    // action
-                                } label : {
-                                    Text("0")
-                                        .frame(minWidth: 50)
-                                        .padding(.vertical, 5)
-                                        .background(Color("Mikasa"))
-                                        .foregroundColor(.white)
-                                        .clipShape(.rect(cornerRadius:20))
-                                    
-                                }
+                                MiscButton(buttonAction: {
+                                    homeScoreSubtract()
+                                }, buttonText: "-")
+                                
+                                MiscButton(buttonAction: {// action here
+                                }, buttonText: "0")
+                                
                             }
                             
                             Spacer()
@@ -99,28 +106,15 @@ struct ContentView: View {
                             }
                             HStack (spacing: 75){
                                 
-                                Button {
-                                    // action
-                                } label : {
-                                    Text("0")
-                                        .frame(minWidth: 50)
-                                        .padding(.vertical, 5)
-                                        .background(Color("Mikasa"))
-                                        .foregroundColor(.white)
-                                        .clipShape(.rect(cornerRadius:20))
-                                    
-                                }
                                 
-                                Button {
+                                MiscButton(buttonAction: {// action here
+                                }, buttonText: "0")
+                                
+                                MiscButton(buttonAction: {
                                     awayScoreSubtract()
-                                } label : {
-                                    Text("-")
-                                        .frame(minWidth: 50)
-                                        .padding(.vertical, 5)
-                                        .background(Color("Mikasa"))
-                                        .foregroundColor(.white)
-                                        .clipShape(.rect(cornerRadius:20))
-                                }
+                                }, buttonText: "-")
+                                
+                                
                                 
                             }
                             Spacer()
