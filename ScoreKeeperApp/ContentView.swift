@@ -73,7 +73,7 @@ struct ContentView: View {
                                 }, buttonText: "-")
                                 
                                 MiscButton(buttonAction: {// action here
-                                }, buttonText: "0")
+                                }, buttonText: "1")
                                 
                             }
                             
