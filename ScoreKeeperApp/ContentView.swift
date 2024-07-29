@@ -7,6 +7,33 @@
 
 import SwiftUI
 
+extension Color {
+    init(hex: String) {
+        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var int = UInt64()
+        Scanner(string: hex).scanHexInt64(&int)
+        let a, r, g, b: UInt64
+        switch hex.count {
+        case 3: // RGB (12-bit)
+            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6: // RGB (24-bit)
+            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        case 8: // ARGB (32-bit)
+            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        default:
+            (a, r, g, b) = (255, 0, 0, 0)
+        }
+
+        self.init(
+            .sRGB,
+            red: Double(r) / 255,
+            green: Double(g) / 255,
+            blue: Double(b) / 255,
+            opacity: Double(a) / 255
+        )
+    }
+}
+
 struct MiscButton: View {
     
     var buttonAction: () -> Void
@@ -75,7 +102,7 @@ struct ContentView: View {
     }
 }
 
-
+/*
 struct PortraitView: View {
     @State private var homeScore = 0
     @State private var awayScore = 0
@@ -228,31 +255,108 @@ struct PortraitView: View {
         homeScore = 0
     }
 }
+*/
+
+struct ColorOptions {
+    let options: [String: Image] = [
+        "blueRed": Image("blueRed"),
+        "bluePink": Image("bluePink"),
+        "greenYellow": Image("greenYellow"),
+        "blueOrange": Image("blueOrange"),
+        "blackOrange": Image("blackOrange")
+    ]
+}
+
+
+struct SettingsView: View {
+    
+    
+    let colorOptions = ColorOptions()
+    @Binding var showingSettings: Bool
+    
+    var body: some View {
+        ZStack {
+            Color.white
+                .ignoresSafeArea()
+            HStack {
+                VStack {
+                    HStack {
+                        Text("Change Color")
+                        ForEach(Array(colorOptions.options.keys), id: \.self) { key in
+                            colorOptions.options[key]?
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                            
+                        }
+                    }
+                }
+                
+                VStack {
+                    
+                }
+                Button {
+                    self.showingSettings.toggle()
+                } label: {
+                    Text("Exit")
+                }
+
+            }
+            
+                    }
+    }
+}
+
 
 struct LandscapeView: View {
     @State private var homeScore = 0
     @State private var awayScore = 0
     @State private var setScoreHome = 0
     @State private var setScoreAway = 0
+    @State var showingSettings = false
+    
+    @State var homeColor: Color = .blue
+    @State var awayColor: Color = .red
+    
     
     var body: some View {
         ZStack {
             Color.white
                 .ignoresSafeArea()
             VStack {
-                Spacer()
-                Spacer()
+                ZStack {
+                    HStack {
+                        Button {
+                            self.showingSettings.toggle()
+                        } label: {
+                            Image(systemName: "gearshape.fill")
+                        }
+                        .font(.system(size: 30))
+                        .sheet(isPresented: $showingSettings) {
+                            SettingsView(showingSettings: $showingSettings)
+                        }
+                        Spacer()
+                    }
+                    
+                    HStack {
+                        Spacer()
+                        Text("Home")
+                        Spacer()
+                        Spacer()
+                        Text("Away")
+                        Spacer()
+                    }
+                }
                 HStack{
                     Button {
                         homeScoreAdd()
                     } label : {
                         VStack {
                             Text("\(homeScore)")
-                            
+                                .font(Font.custom("Exo 2", size: 96))
                         }
-                        .frame(maxWidth: 360, maxHeight: 1115)
+                        .frame(maxWidth: 360, maxHeight: 50)
                         .padding(.vertical, 100)
-                        .background(.blue)
+                        .background(Color(homeColor))
                         .clipShape(.rect(cornerRadius: 20))
                         .font(.system(size: 96))
                         .buttonStyle(PlainButtonStyle())
@@ -267,22 +371,27 @@ struct LandscapeView: View {
                                 .font(Font.custom("Exo 2", size: 96))
                             
                         }
-                        .frame(maxWidth: 360, maxHeight: 115)
+                        .frame(maxWidth: 360, maxHeight:50)
                         .padding(.vertical, 100)
-                        .background(.red)
+                        .background(Color(awayColor))
                         .clipShape(.rect(cornerRadius: 20))
                         .font(.system(size: 96))
                         .buttonStyle(PlainButtonStyle())
                         .foregroundColor(.black)
                     }
-                    
                 }
                 HStack {
                     HStack {
                         MiscButton(buttonAction: {
                             homeScoreSubtract()
                         }, buttonText: "-")
-                        
+                        Button {
+                            homeScore = 0
+                        } label: {
+                            Image(systemName: "arrow.uturn.backward.circle.fill")
+                        }
+                        .foregroundStyle(Color("Mikasa"))
+                        .font(.system(size: 30))
                     }
                     
                     Spacer()
@@ -312,7 +421,7 @@ struct LandscapeView: View {
                             }
                             .foregroundColor(.white)
                         }
-                        .frame(maxWidth: 90, minHeight: 40)
+                        .frame(maxWidth: 90, maxHeight: 45)
                         .clipShape(.capsule)
                         .shadow(radius: 5)
                     }
@@ -334,16 +443,23 @@ struct LandscapeView: View {
                     
                     HStack {
                         
+                        Button {
+                            awayScore = 0
+                        } label: {
+                            Image(systemName: "arrow.uturn.backward.circle.fill")
+                        }
+                        .foregroundStyle(Color("Mikasa"))
+                        .font(.system(size: 30))
                         MiscButton(buttonAction: {
-                            awayScoreSubtract()
+                            homeScoreSubtract()
                         }, buttonText: "-")
                         
                     }
                 }
                 
             }
-            
         }
+        .foregroundStyle(.black)
     }
     
     func homeScoreAdd() {
@@ -374,6 +490,8 @@ struct LandscapeView: View {
     func scoreReset() {
         awayScore = 0
         homeScore = 0
+        setScoreHome = 0
+        setScoreAway = 0
     }
 }
 

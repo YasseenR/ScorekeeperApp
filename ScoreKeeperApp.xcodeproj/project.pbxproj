@@ -12,6 +12,7 @@
 		664EC8422C24C0EF00E05648 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 664EC8412C24C0EF00E05648 /* Assets.xcassets */; };
 		664EC8452C24C0EF00E05648 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 664EC8442C24C0EF00E05648 /* Preview Assets.xcassets */; };
 		66A342F92C57DE3B00E1E76E /* Exo2-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 66A342F82C57DE3B00E1E76E /* Exo2-VariableFont_wght.ttf */; };
+		66A342FB2C583BE100E1E76E /* .1644.otf in Resources */ = {isa = PBXBuildFile; fileRef = 66A342FA2C583BE100E1E76E /* .1644.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		664EC8442C24C0EF00E05648 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		66A342F52C57D92000E1E76E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		66A342F82C57DE3B00E1E76E /* Exo2-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Exo2-VariableFont_wght.ttf"; path = "../../../../Library/Fonts/Exo2-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		66A342FA2C583BE100E1E76E /* .1644.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = .1644.otf; path = ../../../../../../Library/Fonts/.1644.otf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				664EC83F2C24C0EF00E05648 /* ContentView.swift */,
 				664EC8412C24C0EF00E05648 /* Assets.xcassets */,
 				66A342F82C57DE3B00E1E76E /* Exo2-VariableFont_wght.ttf */,
+				66A342FA2C583BE100E1E76E /* .1644.otf */,
 				664EC8432C24C0EF00E05648 /* Preview Content */,
 			);
 			path = ScoreKeeperApp;
@@ -131,6 +134,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				664EC8452C24C0EF00E05648 /* Preview Assets.xcassets in Resources */,
+				66A342FB2C583BE100E1E76E /* .1644.otf in Resources */,
 				664EC8422C24C0EF00E05648 /* Assets.xcassets in Resources */,
 				66A342F92C57DE3B00E1E76E /* Exo2-VariableFont_wght.ttf in Resources */,
 			);
@@ -286,7 +290,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -316,7 +320,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
