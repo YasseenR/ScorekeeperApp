@@ -11,6 +11,7 @@
 		664EC8402C24C0EF00E05648 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664EC83F2C24C0EF00E05648 /* ContentView.swift */; };
 		664EC8422C24C0EF00E05648 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 664EC8412C24C0EF00E05648 /* Assets.xcassets */; };
 		664EC8452C24C0EF00E05648 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 664EC8442C24C0EF00E05648 /* Preview Assets.xcassets */; };
+		66A342F92C57DE3B00E1E76E /* Exo2-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 66A342F82C57DE3B00E1E76E /* Exo2-VariableFont_wght.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,8 @@
 		664EC83F2C24C0EF00E05648 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		664EC8412C24C0EF00E05648 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		664EC8442C24C0EF00E05648 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		66A342F52C57D92000E1E76E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		66A342F82C57DE3B00E1E76E /* Exo2-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Exo2-VariableFont_wght.ttf"; path = "../../../../Library/Fonts/Exo2-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,9 +54,11 @@
 		664EC83C2C24C0EF00E05648 /* ScoreKeeperApp */ = {
 			isa = PBXGroup;
 			children = (
+				66A342F52C57D92000E1E76E /* Info.plist */,
 				664EC83D2C24C0EF00E05648 /* ScoreKeeperAppApp.swift */,
 				664EC83F2C24C0EF00E05648 /* ContentView.swift */,
 				664EC8412C24C0EF00E05648 /* Assets.xcassets */,
+				66A342F82C57DE3B00E1E76E /* Exo2-VariableFont_wght.ttf */,
 				664EC8432C24C0EF00E05648 /* Preview Content */,
 			);
 			path = ScoreKeeperApp;
@@ -127,6 +132,7 @@
 			files = (
 				664EC8452C24C0EF00E05648 /* Preview Assets.xcassets in Resources */,
 				664EC8422C24C0EF00E05648 /* Assets.xcassets in Resources */,
+				66A342F92C57DE3B00E1E76E /* Exo2-VariableFont_wght.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +281,7 @@
 				DEVELOPMENT_TEAM = 969QW522BA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ScoreKeeperApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -304,6 +311,7 @@
 				DEVELOPMENT_TEAM = 969QW522BA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ScoreKeeperApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
