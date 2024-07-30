@@ -287,20 +287,19 @@ struct SettingsView: View {
                 VStack {
                     HStack {
                         Text("Change Color")
-                        ZStack {
-                            HStack {
-                                
-                            }
                             HStack {
                                 ForEach(colorOptions.options, id: \.key) { option in
-                                    HStack {
-                                        option.value
-                                            .resizable()
-                                            .frame(width: 50, height: 50)
+                                    ZStack {
+                                        Button {
+                                            changeColor(currentHomeColor: currentHomeColor, currentAwayColor: currentAwayColor, key: option.key)
+                                        } label: {
+                                            option.value
+                                                .resizable()
+                                                .frame(width: 50, height: 50)
+                                        }
                                     }
                                 }
                             }
-                        }
                     }
                     Button {
                         self.showingSettings.toggle()
@@ -310,13 +309,35 @@ struct SettingsView: View {
                 }
                 
                 VStack {
-                    
+                 
                 }
                 
                 
             }
             
         }
+    }
+    
+    func changeColor(currentHomeColor: Color, currentAwayColor: Color, key: String) {
+        
+        if (key == "blueRed") {
+            self.currentHomeColor = .blue
+            self.currentAwayColor = .red
+        } else if (key == "bluePink"){
+            self.currentHomeColor = Color(hex: "#0072b2")
+            self.currentAwayColor = Color(hex: "cc79a7")
+        } else if (key == "greenYellow"){
+            self.currentHomeColor = Color(hex: "#009e73")
+            self.currentAwayColor = Color(hex: "f0e442")
+        } else if (key == "blueOrange"){
+            self.currentHomeColor = Color(hex: "56b4e9")
+            self.currentAwayColor = Color(hex: "d55e00")
+        } else if (key == "blackOrange"){
+            self.currentHomeColor = Color(hex: "#000000")
+            self.currentAwayColor = Color(hex: "#e69f00")
+        }
+         
+    
     }
     
 }
