@@ -258,20 +258,25 @@ struct PortraitView: View {
 */
 
 struct ColorOptions {
-    let options: [String: Image] = [
-        "blueRed": Image("blueRed"),
-        "bluePink": Image("bluePink"),
-        "greenYellow": Image("greenYellow"),
-        "blueOrange": Image("blueOrange"),
-        "blackOrange": Image("blackOrange")
+    let options: [(key: String, value: Image)] = [
+        (key: "blueRed", value: Image("blueRed")),
+        (key: "bluePink", value: Image("bluePink")),
+        (key: "greenYellow", value: Image("greenYellow")),
+        (key: "blueOrange", value: Image("blueOrange")),
+        (key: "blackOrange", value: Image("blackOrange"))
     ]
 }
+
+
+
 
 
 struct SettingsView: View {
     
     
     let colorOptions = ColorOptions()
+    @Binding var currentHomeColor: Color
+    @Binding var currentAwayColor: Color
     @Binding var showingSettings: Bool
     
     var body: some View {
@@ -282,28 +287,38 @@ struct SettingsView: View {
                 VStack {
                     HStack {
                         Text("Change Color")
-                        ForEach(Array(colorOptions.options.keys), id: \.self) { key in
-                            colorOptions.options[key]?
-                                .resizable()
-                                .frame(width: 50, height: 50)
-                            
+                        ZStack {
+                            HStack {
+                                
+                            }
+                            HStack {
+                                ForEach(colorOptions.options, id: \.key) { option in
+                                    HStack {
+                                        option.value
+                                            .resizable()
+                                            .frame(width: 50, height: 50)
+                                    }
+                                }
+                            }
                         }
+                    }
+                    Button {
+                        self.showingSettings.toggle()
+                    } label: {
+                        Text("Exit")
                     }
                 }
                 
                 VStack {
                     
                 }
-                Button {
-                    self.showingSettings.toggle()
-                } label: {
-                    Text("Exit")
-                }
-
+                
+                
             }
             
-                    }
+        }
     }
+    
 }
 
 
@@ -332,7 +347,7 @@ struct LandscapeView: View {
                         }
                         .font(.system(size: 30))
                         .sheet(isPresented: $showingSettings) {
-                            SettingsView(showingSettings: $showingSettings)
+                            SettingsView(currentHomeColor: $homeColor, currentAwayColor: $awayColor, showingSettings: $showingSettings)
                         }
                         Spacer()
                     }
