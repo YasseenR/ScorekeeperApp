@@ -259,11 +259,10 @@ struct PortraitView: View {
 
 struct ColorOptions {
     let options: [(key: String, value: Image)] = [
+        (key: "greenYellow", value: Image("greenYellow")),
         (key: "blueRed", value: Image("blueRed")),
         (key: "bluePink", value: Image("bluePink")),
-        (key: "greenYellow", value: Image("greenYellow")),
-        (key: "blueOrange", value: Image("blueOrange")),
-        (key: "blackOrange", value: Image("blackOrange"))
+        (key: "blueOrange", value: Image("blueOrange"))
     ]
 }
 
@@ -278,6 +277,8 @@ struct SettingsView: View {
     @Binding var currentHomeColor: Color
     @Binding var currentAwayColor: Color
     @Binding var showingSettings: Bool
+    @Binding var homeTeamName: String
+    @Binding var awayTeamName: String
     
     var body: some View {
         ZStack {
@@ -285,9 +286,10 @@ struct SettingsView: View {
                 .ignoresSafeArea()
             HStack {
                 VStack {
+                    Spacer()
                     HStack {
-                        Text("Change Color")
                             HStack {
+                                Text("Change Color")
                                 ForEach(colorOptions.options, id: \.key) { option in
                                     ZStack {
                                         Button {
@@ -300,12 +302,43 @@ struct SettingsView: View {
                                     }
                                 }
                             }
+                        Spacer()
+                        VStack {
+                            Text("Change Team Name")
+                            
+                            TextField(text: $homeTeamName, prompt: Text("Home Team Name")){
+                                Text("")
+                            }
+                        
+                                .frame(width: 175)
+                                .disableAutocorrection(true)
+                                .textFieldStyle(.roundedBorder)
+                                .border(.black)
+                            TextField(text: $awayTeamName, prompt: Text("Away Team Name")){
+                                Text("")
+                            }
+                                .frame(width: 175)
+                                .disableAutocorrection(true)
+                                .textFieldStyle(.roundedBorder)
+                                .border(.black)
+                            
+                        }
+                        Spacer()
                     }
+                    Spacer()
                     Button {
                         self.showingSettings.toggle()
                     } label: {
                         Text("Exit")
                     }
+                        .frame(width: 75, height: 25)
+                        .padding(.vertical, 5)
+                        .background(Color("Mikasa"))
+                        .foregroundColor(.white)
+                        .clipShape(.rect(cornerRadius:20))
+                        .foregroundStyle(.white)
+                        .accentColor(.white)
+                    Spacer()
                 }
                 
                 VStack {
@@ -332,9 +365,6 @@ struct SettingsView: View {
         } else if (key == "blueOrange"){
             self.currentHomeColor = Color(hex: "56b4e9")
             self.currentAwayColor = Color(hex: "d55e00")
-        } else if (key == "blackOrange"){
-            self.currentHomeColor = Color(hex: "#000000")
-            self.currentAwayColor = Color(hex: "#e69f00")
         }
          
     
@@ -350,8 +380,10 @@ struct LandscapeView: View {
     @State private var setScoreAway = 0
     @State var showingSettings = false
     
-    @State var homeColor: Color = .blue
-    @State var awayColor: Color = .red
+    @State var homeColor: Color = Color(hex: "#009e73")
+    @State var awayColor: Color = Color(hex: "f0e442")
+    @State var homeTeamName = "Home"
+    @State var awayTeamName = "Away"
     
     
     var body: some View {
@@ -368,17 +400,17 @@ struct LandscapeView: View {
                         }
                         .font(.system(size: 30))
                         .sheet(isPresented: $showingSettings) {
-                            SettingsView(currentHomeColor: $homeColor, currentAwayColor: $awayColor, showingSettings: $showingSettings)
+                            SettingsView(currentHomeColor: $homeColor, currentAwayColor: $awayColor, showingSettings: $showingSettings, homeTeamName: $homeTeamName, awayTeamName: $awayTeamName)
                         }
                         Spacer()
                     }
                     
                     HStack {
                         Spacer()
-                        Text("Home")
+                        Text(homeTeamName)
                         Spacer()
                         Spacer()
-                        Text("Away")
+                        Text(awayTeamName)
                         Spacer()
                     }
                 }
@@ -487,7 +519,7 @@ struct LandscapeView: View {
                         .foregroundStyle(Color("Mikasa"))
                         .font(.system(size: 30))
                         MiscButton(buttonAction: {
-                            homeScoreSubtract()
+                            awayScoreSubtract()
                         }, buttonText: "-")
                         
                     }
